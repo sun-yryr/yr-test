@@ -17,7 +17,7 @@ function poseMessage() {
     var response = UrlFetchApp.fetch("https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=" + channelID +"&key=" + APIkey + "&order=date&maxResults=1");
     var snippet = response.getContentText("UTF-8");
     var id = snippet.split('"')[45];
-    var dated = new Date(snippet.split('"')[51]);
+    var dated = new Date(snippet.split('"')[51]); //gooleさんは神なのでシリアル値変換が楽々
     var newTime = getDateAndTime(dated);
       
     
