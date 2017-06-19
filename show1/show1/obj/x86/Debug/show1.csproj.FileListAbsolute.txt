@@ -1,0 +1,5 @@
+/Users/sun-mba/develop/yrtest/show1/show1/bin/Debug/show1.exe
+/Users/sun-mba/develop/yrtest/show1/show1/bin/Debug/show1.pdb
+/Users/sun-mba/develop/yrtest/show1/show1/obj/x86/Debug/show1.csproj.CoreCompileInputs.cache
+/Users/sun-mba/develop/yrtest/show1/show1/obj/x86/Debug/show1.exe
+/Users/sun-mba/develop/yrtest/show1/show1/obj/x86/Debug/show1.pdb
