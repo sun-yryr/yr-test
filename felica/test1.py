@@ -16,21 +16,21 @@ def access(idm):
     result = None
     try :
         result = urllib.urlopen( url ).read()
+        result = result[2:7]
+        print ("\n学籍番号>>>>>" + result + "\n")
+        f.write(result)
+        f.write("\n")
     except:
         print "アクセスに失敗しました。"
 
 def on_connect(tag):
-    print tag
-    
+    print "読み込み中..."
     try:
         if isinstance(tag,nfc.tag.tt3.Type3Tag):
             idm = binascii.hexlify(tag.idm)
-            f.write(idm)
-            f.write("\n")
             access(idm)
     except:
         pass
-    print "END"
 
 
 def main():
@@ -38,8 +38,8 @@ def main():
         with nfc.ContactlessFrontend('usb') as clf:
             print "START"
             clf.connect(rdwr={'on-connect': on_connect})
-        print "wait for 1 sec"
-        sleep(1)
+        print "wait for 0.2 sec"
+        sleep(0.2)
 
 
 if __name__ == '__main__':
