@@ -15,7 +15,6 @@ def access(idm):
         f.write("\n")
 
 def on_connect(tag):
-    print "読み込み中..."
     try:
         if isinstance(tag,nfc.tag.tt3.Type3Tag):
             idm = binascii.hexlify(tag.idm)
@@ -28,9 +27,8 @@ def on_connect(tag):
 def main():
     while 1:
         with nfc.ContactlessFrontend('usb') as clf:
-            print "START"
+            print "タッチしてください"
             clf.connect(rdwr={'on-connect': on_connect})
-        print "wait for 0.7 sec"
         sleep(0.7)
 
 

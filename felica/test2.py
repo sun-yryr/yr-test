@@ -8,7 +8,7 @@ import requests
 import MySQLdb
 
 def access(idm):
-    print "Please input s*****>>>"
+    print "学籍番号を入力>>>"
     x = raw_input()
     sql = "insert into felica values('" + idm + "', '" + x + "')"
     cursor.execute(sql)
@@ -23,15 +23,13 @@ def on_connect(tag):
             access(idm)
     except:
         pass
-    print "END"
 
 
 def main():
     while 1:
         with nfc.ContactlessFrontend('usb') as clf:
-            print "START"
+            print "タッチしてください"
             clf.connect(rdwr={'on-connect': on_connect})
-        print "wait for 1 sec"
         sleep(1)
 
 
