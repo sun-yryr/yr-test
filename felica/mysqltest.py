@@ -12,13 +12,15 @@ cursor.execute(sql) # 2つ目のレコードを挿入
 
 connect.commit()    # コミットする
 
-sql = "select * from felica"
+sql = "select * from felica where idm = '0101011445156a1e'"
 cursor.execute(sql)  # select文を実行
 
 for row in cursor:
-    print row[0], row[1]
+    print row[1]
 
-sql = "delete from felica where idm = 'apple';"
+sql = "delete from felica where idm = 'apple'"
+cursor.execute(sql)
+sql = "delete from felica where idm = 'orange'"
 cursor.execute(sql)
 
 connect.commit()

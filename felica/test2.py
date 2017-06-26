@@ -5,14 +5,14 @@ import nfc
 import binascii
 from time import sleep
 import requests
+import MySQLdb
 
 def access(idm):
     print "Please input s*****>>>"
     x = raw_input()
-    url = "https://script.google.com/macros/s/AKfycbx1LEM5AkQpD_GCyrk9j9-d0DRM5gzD0XlqXvBHs4HtK-_0cdw/exec"
-    s = requests.session()
-    params = {"idm":idm, "s" : x }
-    r =  s.post(url, data=params)
+    sql = "insert into felica values('" + idm + "', '" + x + "')"
+    cursor.execute(sql)
+    connect.commit()
 
 def on_connect(tag):
     print tag
@@ -36,4 +36,7 @@ def main():
 
 
 if __name__ == '__main__':
+    print "MySQL connecting..."
+    connect = MySQLdb.connect(host='localhost',user='root',db='yryr')
+    cursor = connect.cursor()
     main()

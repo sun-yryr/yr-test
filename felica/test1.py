@@ -2,26 +2,17 @@
 import urllib
 import nfc
 import binascii
+import MySQLdb
 from time import sleep
+import sys
 
 def access(idm):
-    url = "https://script.google.com/macros/s/AKfycbx1LEM5AkQpD_GCyrk9j9-d0DRM5gzD0XlqXvBHs4HtK-_0cdw/exec"
-
-    param = [
-             ( "idm", idm),
-             ]
-
-    url += "?{0}".format( urllib.urlencode( param ) )
-
-    result = None
-    try :
-        result = urllib.urlopen( url ).read()
-        result = result[2:7]
-        print ("\n学籍番号>>>>>" + result + "\n")
-        f.write(result)
+    sql = "select * from felica where idm = '" + idm + "'"
+    cursor.execute(sql)
+    for row in cursor:
+        print ("\n学籍番号>>>>>" + row[1] + "\n")
+        f.write(row[1])
         f.write("\n")
-    except:
-        print "アクセスに失敗しました。"
 
 def on_connect(tag):
     print "読み込み中..."
@@ -30,6 +21,7 @@ def on_connect(tag):
             idm = binascii.hexlify(tag.idm)
             access(idm)
     except:
+        print "読み込み失敗"
         pass
 
 
@@ -38,11 +30,14 @@ def main():
         with nfc.ContactlessFrontend('usb') as clf:
             print "START"
             clf.connect(rdwr={'on-connect': on_connect})
-        print "wait for 0.2 sec"
-        sleep(0.2)
+        print "wait for 0.7 sec"
+        sleep(0.7)
 
 
 if __name__ == '__main__':
+    print "MySQL connecting..."
+    connect = MySQLdb.connect(host='localhost',user='root',db='yryr')
+    cursor = connect.cursor()
     print "Please input File Name>>>"
     x = raw_input()
     with open(x,"w") as f:
