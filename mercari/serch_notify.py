@@ -43,7 +43,7 @@ def main():
                 f.close()
             
             #ここを変えることで指定値段以上・以下にする
-            if (int(price) <= 40000) and (price != oldprice):
+            if (int(price) <= 40000) and (price != oldprice) and (int(price) > 7000):
                 #print (name + ":" + price)
                 #print "---------------------------------------------------"
                 message = "・" + name + " : " + price + "円\n#ゆるゆるめも\n" + url
