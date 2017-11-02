@@ -10,18 +10,15 @@ def access(idm):
     sql = "select * from felica where idm = '" + idm + "'"
     cursor.execute(sql)
     for row in cursor:
-        print ("\n学籍番号>>>>>" + row[1] + "\n")
-        f.write(row[1])
+        print ("\n学籍番号>>>>>" + str(row[1]) + "\n")
+        f.write(str(row[1]))
         f.write("\n")
 
 def on_connect(tag):
-    try:
-        if isinstance(tag,nfc.tag.tt3.Type3Tag):
-            idm = binascii.hexlify(tag.idm)
-            access(idm)
-    except:
-        print "読み込み失敗"
-        pass
+    if isinstance(tag,nfc.tag.tt3.Type3Tag):
+        idm = binascii.hexlify(tag.idm)
+        access(idm)
+
 
 
 def main():

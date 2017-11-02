@@ -15,8 +15,8 @@ def main(oauth):
     Twi_id = f.read()
     
     params = {
-            #"user_id":3404290100,
-            "count":1,
+            "user_id":734787651174207488,
+            "count":20,
             #"since_id":Twi_id,
             "exclude_replies":True,
             "include_rts":False
@@ -30,8 +30,8 @@ def main(oauth):
         for tweet in reversed(timeline):
             user = tweet["user"]
             toukou = "[" + user["name"] + "]\n" + tweet["text"]
-            notify(toukou,None)
-
+            #notify(toukou,None)
+            print toukou
             try:
                 entities = tweet["extended_entities"]
                 for media in entities["media"]:
